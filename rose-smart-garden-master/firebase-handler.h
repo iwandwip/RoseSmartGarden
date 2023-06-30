@@ -15,11 +15,11 @@
 #include "WiFi.h"
 #include "stdint.h"
 
-#define API_KEY "AIzaSyCJgnZh9hEy_4dSLUSuLRlVw4lo6P3XmU8"
-#define DATABASE_URL "https://auto-hydro-barra-default-rtdb.firebaseio.com/"
+#define API_KEY "AIzaSyB1UKSFquvupeRsDm9wlkKIh6iVqlJSBek"
+#define DATABASE_URL "https://rose-smart-garden-default-rtdb.firebaseio.com/"
 
-#define USER_EMAIL "auto-hydro@gmail.com"
-#define USER_PASSWORD "auto-hydro"
+#define USER_EMAIL "rose-smart-garden@gmail.com"
+#define USER_PASSWORD "rose-smart-garden"
 
 #define NTP_SERVER "pool.ntp.org"
 #define GMT_OFFSET_SEC 3600

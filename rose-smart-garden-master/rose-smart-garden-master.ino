@@ -17,7 +17,7 @@ void setup() {
 
 void loop() {
         com.receive(onReceive);
-        debug();
+        // debug();
 }
 
 void onReceive(String data) {
@@ -34,12 +34,19 @@ void serverHandler(void* pvParameter) {
         firebase.waitConnection(3000);
         for (;;) {
                 if (firebase.isConnect()) {
-                        // firebase.clearData();
-                        // firebase.addData(value[0], "/voltage-in");
-                        // firebase.addData(value[1], "/voltage-out");
-                        // firebase.addData(value[2], "/current-in");
-                        // firebase.addData(value[3], "/current-out");
-                        // firebase.sendData(2000);
+                        firebase.clearData();
+                        firebase.addData(soilValue[0], "/soil-moisture-0");
+                        firebase.addData(soilValue[1], "/soil-moisture-1");
+                        firebase.addData(soilValue[2], "/soil-moisture-2");
+                        firebase.addData(soilValue[3], "/soil-moisture-3");
+                        firebase.addData(soilValue[4], "/soil-moisture-4");
+                        firebase.addData(soilValue[5], "/soil-moisture-5");
+
+                        firebase.addData(dhtValueA[0], "/temperature-a");
+                        firebase.addData(dhtValueA[1], "/humidity-a");
+                        firebase.addData(dhtValueB[0], "/temperature-b");
+                        firebase.addData(dhtValueB[1], "/humidity-a");
+                        firebase.sendData(2000);
                 }
                 vTaskDelay(20 / portTICK_PERIOD_MS);
         }
