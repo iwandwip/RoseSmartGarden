@@ -5,7 +5,7 @@
 #include "serial-com.h"
 #include "dht-sens.h"
 
-#include <MemoryFree.h>
+#include "MemoryFree.h"
 
 SensorModule sensor;
 SerialCom com;
