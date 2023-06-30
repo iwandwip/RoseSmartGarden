@@ -8,6 +8,8 @@
 #include <MemoryFree.h>
 
 SensorModule sensor;
+SerialCom com;
+
 float dhtValueA[2];
 float dhtValueB[2];
 float soilValue[6];
@@ -18,7 +20,17 @@ void setup() {
 
 void loop() {
         sensor.loop(subRoutine);
-        debug();
+        com.clearData();
+        for (uint8_t i = 0; i < 6; i++) {
+                com.addData(soilValue[i]);
+        }
+        com.addData(dhtValueA[0]);
+        com.addData(dhtValueA[1]);
+        com.addData(dhtValueB[0]);
+        com.addData(dhtValueB[1]);
+        com.sendData();
+        com.receive(onReceive);
+        // debug();
 }
 
 void subRoutine() {
@@ -42,6 +54,10 @@ void subRoutine() {
         sensor.clearModules();
 }
 
+void onReceive(String data) {
+        
+}
+
 void debug() {
         Serial.print("| tempA: ");
         Serial.print(dhtValueA[0]);
@@ -52,18 +68,18 @@ void debug() {
         Serial.print("| humB: ");
         Serial.print(dhtValueB[1]);
 
-        // Serial.print("| soilA: ");
-        // Serial.print(soilValue[0]);
-        // Serial.print("| soilB: ");
-        // Serial.print(soilValue[1]);
-        // Serial.print("| soilC: ");
-        // Serial.print(soilValue[2]);
-        // Serial.print("| soilD: ");
-        // Serial.print(soilValue[3]);
-        // Serial.print("| soilE: ");
-        // Serial.print(soilValue[4]);
-        // Serial.print("| soilF: ");
-        // Serial.print(soilValue[5]);
+        Serial.print("| soilA: ");
+        Serial.print(soilValue[0]);
+        Serial.print("| soilB: ");
+        Serial.print(soilValue[1]);
+        Serial.print("| soilC: ");
+        Serial.print(soilValue[2]);
+        Serial.print("| soilD: ");
+        Serial.print(soilValue[3]);
+        Serial.print("| soilE: ");
+        Serial.print(soilValue[4]);
+        Serial.print("| soilF: ");
+        Serial.print(soilValue[5]);
 
         Serial.print("| freeMemory()= ");
         Serial.print(freeMemory());
