@@ -1,23 +1,23 @@
 /*
- *  abstract-sens.h
+ *  soil-moisture-sens.h
  *
- *  abstract sensor lib
+ *  soil-moisture sensor lib
  *  Created on: 2023. 4. 3
  */
 
 #pragma once
 
-#ifndef ABSTRACT_SENS_H
-#define ABSTRACT_SENS_H
+#ifndef SOIL_MOISTURE_SENS_H
+#define SOIL_MOISTURE_SENS_H
 
 #include "Arduino.h"
 #include "sensor-module.h"
 #include "stdint.h"
 
-class Abstract : public BaseSens {
+class SoilMoistureSens : public BaseSens {
       private:
-        float arrTemplateValue[6];
-        float templateValue;
+        float arrSoilMoistureValue[6];
+        float soilMoistureValue;
         uint32_t sensTimer[3];
 
         bool isCalibrate;
@@ -27,9 +27,9 @@ class Abstract : public BaseSens {
         float getSensorAverage(float sensorValue, int numReadings = 10);
         float lowPassFilter(float input, float output, float alpha);
       public:
-        Abstract();
-        Abstract(uint8_t __pin, bool enableCalibrate = false);
-        ~Abstract();
+        SoilMoistureSens();
+        SoilMoistureSens(uint8_t __pin, bool enableCalibrate = false);
+        ~SoilMoistureSens();
 
         void init() override;
         void update() override;
@@ -48,4 +48,4 @@ class Abstract : public BaseSens {
         void setPins(uint8_t __pin);
 };
 
-#endif  // ABSTRACT_SENS_H
+#endif  // SOIL_MOISTURE_SENS_H
