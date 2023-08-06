@@ -15,6 +15,8 @@ FirebaseModule::FirebaseModule(uint8_t coreIndex) {
         auth = new FirebaseAuth;
         config = new FirebaseConfig;
         serverTask = new TaskHandle_t;
+        ntpUDP = new WiFiUDP();
+        timeClient = new NTPClient(*ntpUDP);
         configTime(GMT_OFFSET_WIB, DAYLIGHT_OFFSET, NTP_SERVER);
         xTaskCreatePinnedToCore(serverHandler, "server_task", 20000, NULL, 1, serverTask, coreIndex);
 }
@@ -49,6 +51,10 @@ bool FirebaseModule::connectToWiFi(const char* ssid, const char* pwd) {
                 delay(1000);
         }
         Serial.println(WiFi.localIP());
+
+        timeClient->begin();
+        timeClient->setTimeOffset(GMT_OFFSET_WIB);
+
         connect = true;
         return true;
 }
@@ -58,7 +64,10 @@ bool FirebaseModule::isConnect() {
 }
 
 bool FirebaseModule::update(void (*onUpdate)(void)) {
-        onUpdate();
+        if (onUpdate != nullptr) onUpdate();
+        while (!timeClient->update()) {
+                timeClient->forceUpdate();
+        }
         return true;
 }
 
@@ -137,6 +146,10 @@ String FirebaseModule::getStrData(const char* getAddress) {
         } catch (...) {
         }
         return "";
+}
+
+String FirebaseModule::getStrTime() {
+        return String(timeClient->getDay()) + ";" + String(timeClient->getHours()) + ";" + String(timeClient->getMinutes()) + ";" + String(timeClient->getSeconds());
 }
 
 void FirebaseModule::waitConnection(uint32_t __tmr) {

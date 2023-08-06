@@ -11,7 +11,7 @@
 
 SerialCom::SerialCom() {
         dataSend = "";
-        USING_SERIAL.begin(9600, SERIAL_8N1, 17, 16);
+        USING_SERIAL.begin(115200, SERIAL_8N1, 16, 17);
 }
 
 void SerialCom::addData(const char* newData, const char* separator) {
@@ -37,7 +37,7 @@ void SerialCom::sendData(uint32_t __t) {
         if (millis() - sendTime >= __t) {
                 sendTime = millis();
                 USING_SERIAL.println(dataSend);
-                Serial.println(dataSend);
+                // Serial.println(dataSend);
         }
 }
 

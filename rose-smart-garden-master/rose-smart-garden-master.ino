@@ -16,11 +16,15 @@ void setup() {
 }
 
 void loop() {
+        com.clearData();
+        com.addData(firebase.getStrTime().c_str());
+        com.sendData();
         com.receive(onReceive);
-        // debug();
+        debug();
 }
 
 void onReceive(String data) {
+        // Serial.print(data);
         for (uint8_t i = 0; i < 6; i++) {
                 soilValue[i] = com.getData(data, i);
         }
@@ -45,8 +49,9 @@ void serverHandler(void* pvParameter) {
                         firebase.addData(dhtValueA[0], "/temperature-a");
                         firebase.addData(dhtValueA[1], "/humidity-a");
                         firebase.addData(dhtValueB[0], "/temperature-b");
-                        firebase.addData(dhtValueB[1], "/humidity-a");
+                        firebase.addData(dhtValueB[1], "/humidity-b");
                         firebase.sendData(2000);
+                        firebase.update();
                 }
                 vTaskDelay(20 / portTICK_PERIOD_MS);
         }

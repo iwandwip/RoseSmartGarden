@@ -11,11 +11,11 @@
 
 #define USING_SERIAL espSerial
 
-SoftwareSerial USING_SERIAL(2, 3);
+SoftwareSerial USING_SERIAL(3, 2);
 
 SerialCom::SerialCom() {
         dataSend = "";
-        USING_SERIAL.begin(9600);
+        USING_SERIAL.begin(115200);
         USING_SERIAL.println();
 }
 
@@ -42,7 +42,7 @@ void SerialCom::sendData(uint32_t __t) {
         if (millis() - sendTime >= __t) {
                 sendTime = millis();
                 USING_SERIAL.println(dataSend);
-                Serial.println(dataSend);
+                // Serial.println(dataSend);
         }
 }
 

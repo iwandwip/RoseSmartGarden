@@ -15,6 +15,9 @@
 #include "WiFi.h"
 #include "stdint.h"
 
+#include "NTPClient.h"
+#include "WiFiUdp.h"
+
 #define API_KEY "AIzaSyB1UKSFquvupeRsDm9wlkKIh6iVqlJSBek"
 #define DATABASE_URL "https://rose-smart-garden-default-rtdb.firebaseio.com/"
 
@@ -34,6 +37,8 @@ class FirebaseModule {
         FirebaseData* fbdo = nullptr;
         FirebaseAuth* auth = nullptr;
         FirebaseConfig* config = nullptr;
+        WiFiUDP* ntpUDP = nullptr;
+        NTPClient* timeClient = nullptr;
 
         float* data = nullptr;
         char** address = nullptr;
@@ -59,6 +64,7 @@ class FirebaseModule {
         void setString(String strData, const char* addrs);
         float getData(const char* getAddress);
         String getStrData(const char* getAddress);
+        String getStrTime();
         void waitConnection(uint32_t __tmr);
 };
 

@@ -33,6 +33,8 @@ void DHTSens::update() {
         if (millis() - sensTimer[0] >= 500) {
                 if (!isCalibrate) {
                         temperatureValue = sensorClass->readTemperature();
+                        temperatureValue = (temperatureValue < 0) ? 0 : temperatureValue;
+                        temperatureValue = (temperatureValue > 40) ? 40 : temperatureValue;
                         temperatureValue = temperatureValue + (temperatureValue * SENSOR_FILTER_KF);
                         temperatureValue /= SENSOR_FILTER_KF + 1;
 
