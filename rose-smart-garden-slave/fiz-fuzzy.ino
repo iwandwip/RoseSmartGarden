@@ -57,13 +57,13 @@ int fis_gIMFCount[] = { 3, 3 };
 int fis_gOMFCount[] = { 3 };
 
 // Coefficients for the Input Member Functions
-FIS_TYPE fis_gMFI0Coeff1[] = { 0, 0, 25, 50 };
-FIS_TYPE fis_gMFI0Coeff2[] = { 25, 50, 75 };
-FIS_TYPE fis_gMFI0Coeff3[] = { 50, 75, 100, 100 };
+FIS_TYPE fis_gMFI0Coeff1[] = { -20, -10, 60, 70 };
+FIS_TYPE fis_gMFI0Coeff2[] = { 64.922898997687, 69.922898997687, 74.922898997687 };
+FIS_TYPE fis_gMFI0Coeff3[] = { 70, 80, 110, 120 };
 FIS_TYPE* fis_gMFI0Coeff[] = { fis_gMFI0Coeff1, fis_gMFI0Coeff2, fis_gMFI0Coeff3 };
-FIS_TYPE fis_gMFI1Coeff1[] = { -20, -10, 11, 20 };
-FIS_TYPE fis_gMFI1Coeff2[] = { 10, 20, 30 };
-FIS_TYPE fis_gMFI1Coeff3[] = { 20, 29, 50, 60 };
+FIS_TYPE fis_gMFI1Coeff1[] = { -20, -10, 18, 23 };
+FIS_TYPE fis_gMFI1Coeff2[] = { 18, 23, 28 };
+FIS_TYPE fis_gMFI1Coeff3[] = { 23, 28, 50, 60 };
 FIS_TYPE* fis_gMFI1Coeff[] = { fis_gMFI1Coeff1, fis_gMFI1Coeff2, fis_gMFI1Coeff3 };
 FIS_TYPE** fis_gMFICoeff[] = { fis_gMFI0Coeff, fis_gMFI1Coeff };
 
@@ -84,22 +84,34 @@ int fis_gMFO0[] = { 0, 1, 0 };
 int* fis_gMFO[] = { fis_gMFO0 };
 
 // Rule Weights
-FIS_TYPE fis_gRWeight[] = { 1, 1, 1 };
+FIS_TYPE fis_gRWeight[] = { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
 // Rule Type
-int fis_gRType[] = { 1, 1, 1 };
+int fis_gRType[] = { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
 // Rule Inputs
-int fis_gRI0[] = { 3, 0 };
-int fis_gRI1[] = { 2, 0 };
-int fis_gRI2[] = { 1, 2 };
-int* fis_gRI[] = { fis_gRI0, fis_gRI1, fis_gRI2 };
+int fis_gRI0[] = { 1, 3 };
+int fis_gRI1[] = { 2, 3 };
+int fis_gRI2[] = { 3, 3 };
+int fis_gRI3[] = { 1, 2 };
+int fis_gRI4[] = { 2, 2 };
+int fis_gRI5[] = { 3, 2 };
+int fis_gRI6[] = { 1, 1 };
+int fis_gRI7[] = { 2, 1 };
+int fis_gRI8[] = { 3, 1 };
+int* fis_gRI[] = { fis_gRI0, fis_gRI1, fis_gRI2, fis_gRI3, fis_gRI4, fis_gRI5, fis_gRI6, fis_gRI7, fis_gRI8 };
 
 // Rule Outputs
-int fis_gRO0[] = { 3 };
+int fis_gRO0[] = { 2 };
 int fis_gRO1[] = { 2 };
-int fis_gRO2[] = { 1 };
-int* fis_gRO[] = { fis_gRO0, fis_gRO1, fis_gRO2 };
+int fis_gRO2[] = { 3 };
+int fis_gRO3[] = { 1 };
+int fis_gRO4[] = { 2 };
+int fis_gRO5[] = { 3 };
+int fis_gRO6[] = { 2 };
+int fis_gRO7[] = { 2 };
+int fis_gRO8[] = { 3 };
+int* fis_gRO[] = { fis_gRO0, fis_gRO1, fis_gRO2, fis_gRO3, fis_gRO4, fis_gRO5, fis_gRO6, fis_gRO7, fis_gRO8 };
 
 // Input range Min
 FIS_TYPE fis_gIMin[] = { 0, 0 };

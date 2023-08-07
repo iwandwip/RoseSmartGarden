@@ -1,0 +1,47 @@
+[System]
+Name='Kipas'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Kelembaban'
+Range=[0 100]
+NumMFs=3
+MF1='Kering':'trapmf',[-20 -10 60 70]
+MF2='Sedang':'trimf',[64.922898997687 69.922898997687 74.922898997687]
+MF3='Basah':'trapmf',[70 80 110 120]
+
+[Input2]
+Name='Suhu'
+Range=[0 40]
+NumMFs=3
+MF1='Rendah':'trapmf',[-20 -10 18 23]
+MF2='Sedang':'trimf',[18 23 28]
+MF3='Tinggi':'trapmf',[23 28 50 60]
+
+[Output1]
+Name='Kipas'
+Range=[0 100]
+NumMFs=3
+MF1='lambat':'trapmf',[0 0 25 50]
+MF2='sedang':'trimf',[25 50 75]
+MF3='cepat':'trapmf',[50 75 100 100]
+
+[Rules]
+1 3, 2 (1) : 1
+2 3, 2 (1) : 1
+3 3, 3 (1) : 1
+1 2, 1 (1) : 1
+2 2, 2 (1) : 1
+3 2, 3 (1) : 1
+1 1, 2 (1) : 1
+2 1, 2 (1) : 1
+3 1, 3 (1) : 1
